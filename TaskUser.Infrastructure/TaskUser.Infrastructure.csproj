@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TaskUser.Core\TaskUser.Domain\TaskUser.Domain.csproj" />
+    <ProjectReference Include="..\TaskUser.Domain\TaskUser.Domain.csproj" />
   </ItemGroup>
 
 </Project>

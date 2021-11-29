@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TaskUser.Core\TaskUser.Application\TaskUser.Application.csproj" />
-    <ProjectReference Include="..\..\TaskUser.Core\TaskUser.Domain\TaskUser.Domain.csproj" />
+    <ProjectReference Include="..\TaskUser.Application\TaskUser.Application.csproj" />
+    <ProjectReference Include="..\TaskUser.Domain\TaskUser.Domain.csproj" />
     <ProjectReference Include="..\TaskUser.Common\TaskUser.Common.csproj" />
     <ProjectReference Include="..\TaskUser.Infrastructure\TaskUser.Infrastructure.csproj" />
     <ProjectReference Include="..\TaskUser.Logger\TaskUser.Logger.csproj" />

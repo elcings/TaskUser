@@ -75,6 +75,16 @@ namespace TaskUser.Infrastructure.Data.Repositories
             return query;
         }
 
+        public void CreateList(List<TEntity> obj)
+        {
+             _dbSet.AddRange(obj);
+            _ctx.SaveChanges();
+        }
+
+        public void RemoveAll(List<TEntity> obj)
+        {
+            _ctx.RemoveRange(obj);
+        }
     }
 }
 

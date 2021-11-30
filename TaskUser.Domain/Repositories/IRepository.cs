@@ -14,7 +14,9 @@ namespace TaskUser.Domain.Repositories
         IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");
         TEntity GetById(Guid Id);
         TEntity Create(TEntity obj);
+        void CreateList(List<TEntity> obj);
         TEntity Update(TEntity obj);
         void Remove(Guid Id);
+        void RemoveAll(List<TEntity> obj);
     }
 }

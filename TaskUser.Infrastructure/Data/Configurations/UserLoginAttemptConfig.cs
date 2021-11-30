@@ -17,7 +17,7 @@ namespace TaskUser.Infrastructure.Data.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.AttemptTime).IsRequired();
             builder.Property(x => x.IsSuccess).IsRequired();
-            builder.HasOne(x => x.User).WithMany(x=>x.Attempts);
+            builder.HasOne(x => x.User).WithMany(x=>x.Attempts).HasForeignKey(x=>x.UserId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

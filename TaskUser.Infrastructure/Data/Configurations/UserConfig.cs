@@ -14,10 +14,9 @@ namespace TaskUser.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Email).IsRequired();
-            builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.Surname).IsRequired();
-            builder.Property(x => x.Email).IsRequired();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
+            builder.Property(x => x.Surname).IsRequired().HasMaxLength(30);
+            builder.Property(x => x.Email).IsRequired().HasMaxLength(25);
             builder.HasMany(x => x.Attempts).WithOne(x => x.User);
 
         }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskUser.Application.BusinesLogic;
+using TaskUser.Application.Services;
 
 namespace TaskUser.Application
 {
@@ -13,10 +14,12 @@ namespace TaskUser.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-
-            services.AddScoped<IUserLoginAttemptBusinessLogic, UserLoginAttemptBusinessLogic>();
-
             services.AddScoped<IUserBusinessLogic, UserBusinessLogic>();
+            services.AddScoped<UserService>();
+            services.AddScoped<ICacheService, InMemeoryCacheService>();
+            services.AddScoped<IUserLoginAttemptBusinessLogic, UserLoginAttemptBusinessLogic>();
+            services.AddScoped<UserLoginAttempService>();
+         
 
             services.AddAutoMapper(cfg =>
             {

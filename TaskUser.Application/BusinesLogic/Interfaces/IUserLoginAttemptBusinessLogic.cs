@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskUser.Application.DTO;
+using TaskUser.Common.Model;
 
 namespace TaskUser.Application.BusinesLogic
 {
@@ -11,6 +12,7 @@ namespace TaskUser.Application.BusinesLogic
     {
         List<UserLoginAttempDTO> GetAll();
         UserLoginAttempDTO GetById(Guid Id);
+        StatisticReponse Get(StatisticRequest request);
         UserLoginAttempDTO Save(UserLoginAttempDTO dto);
         void Remove(Guid Id);
     }

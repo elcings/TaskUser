@@ -40,6 +40,31 @@ namespace TaskUser.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskUser.Api", Version = "v1" });
+                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+                {
+                    Description = "Api key needed to access the endpoints. ApiKey: My_API_Key",
+                    In = ParameterLocation.Header,
+                    Name = "ApiKey",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Name = "ApiKey",
+                Type = SecuritySchemeType.ApiKey,
+                In = ParameterLocation.Header,
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "ApiKey"
+                },
+             },
+             new string[] {}
+         }
+    });
             });
         }
 

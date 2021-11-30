@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,15 @@ using TaskUser.Domain.Entities;
 
 namespace TaskUser.Infrastructure.Data
 {
+    //public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<EFDbContext>
+    //{
+    //    public EFDbContext CreateDbContext(string[] args)
+    //    {
+    //        var builder = new DbContextOptionsBuilder<EFDbContext>();
+    //        builder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;Initial Catalog=Light;");
+    //        return new EFDbContext(builder.Options);
+    //    }
+    //}
     public class EFDbContext : DbContext
     {
         public EFDbContext(DbContextOptions<EFDbContext> options) : base(options)

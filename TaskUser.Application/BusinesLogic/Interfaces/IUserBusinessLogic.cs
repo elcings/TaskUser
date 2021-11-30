@@ -11,7 +11,10 @@ namespace TaskUser.Application.BusinesLogic
     {
         List<UserDTO> GetAll();
         UserDTO GetById(Guid Id);
-        UserDTO Save(UserDTO dto);
+        UserDTO GetByEmail(string email);
+        UserDTO Create(UserDTO dto);
+        void Init();
+
         void Remove(Guid Id);
     }
 }

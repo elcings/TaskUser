@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskUser.Application.BusinesLogic;
 using TaskUser.Application.DTO;
+using TaskUser.Common;
 using TaskUser.Common.Model;
 using TaskUser.Domain.Entities;
 using TaskUser.Domain.Repositories;
@@ -28,7 +29,7 @@ namespace TaskUser.Application.BusinesLogic
 
         public StatisticReponse Get(StatisticRequest request)
         {
-            var query = _userLoginAttempRepository.Query().Select(x=>new {Year=x.AttemptTime.Year,Month=x.AttemptTime.Month,Day=x.AttemptTime.Day,IsSucced=x.IsSuccess,UserId=x.UserId }).ToList();
+            var query = _userLoginAttempRepository.Query(x=>x.AttemptTime>=request.Startdate&&x.AttemptTime<=request.EndDate).Select(x=>new {Year=x.AttemptTime.Year,Month=x.AttemptTime.Month,Day=x.AttemptTime.Day,IsSucced=x.IsSuccess,UserId=x.UserId }).ToList();
             var result = new StatisticReponse();
             query.GroupBy(x => new
             {
@@ -51,7 +52,7 @@ namespace TaskUser.Application.BusinesLogic
                 Month = x.Key.Month,
                 Count = x.Count()
             }).ToList().ForEach(x => {
-                result.Month.Add(new Data { Period = $"{x.Month}.{x.Year}", Value = x.Count });
+                result.Month.Add(new Data { Period = $"{x.Month.GetMonthName()}, {x.Year}", Value = x.Count });
             }); 
              query.GroupBy(x => new
             {
@@ -66,7 +67,7 @@ namespace TaskUser.Application.BusinesLogic
               Day = grp.Key.Day,
               Count = grp.Count()
           }).ToList().ForEach(x => {
-              result.Day.Add(new Data { Period = $"{x.Month}.{x.Year}.{x.Day}", Value = x.Count });
+              result.Day.Add(new Data { Period = $"{x.Day}.{x.Month}.{x.Year}", Value = x.Count });
           });
 
             return result;

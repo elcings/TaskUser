@@ -61,14 +61,15 @@ namespace TaskUser.Application.BusinesLogic
                 _userRepository.RemoveAll(users);
             }
             var rand = new Random();
+           
             var user1 = new User { Id = Guid.NewGuid(), Name = $"{rand.Next(0, 100)}Name", Surname = $"{rand.Next(0, 100)}Surname", Email = $"{rand.Next(0, 100)}Email@gmail.com" };
             var attemptList1 = new List<UserLoginAttempt>();
             for (int i = 0; i < 5; i++)
             {
                 if (i % 2 == 0)
-                    attemptList1.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now, IsSuccess = true, UserId = user1.Id });
+                    attemptList1.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now.AddDays(rand.Next(-200, 0)), IsSuccess = true, UserId = user1.Id });
                 else
-                    attemptList1.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now, IsSuccess = false, UserId = user1.Id });
+                    attemptList1.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now.AddDays(rand.Next(-200, 0)), IsSuccess = false, UserId = user1.Id });
             }
             user1.Attempts = attemptList1;
 
@@ -80,9 +81,9 @@ namespace TaskUser.Application.BusinesLogic
             for (int i = 0; i < 5; i++)
             {
                 if (i % 2 == 0)
-                    attemptList2.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now, IsSuccess = true, UserId = user1.Id });
+                    attemptList2.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now.AddDays(rand.Next(-200, 0)), IsSuccess = true, UserId = user1.Id });
                 else
-                    attemptList2.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now, IsSuccess = false, UserId = user1.Id });
+                    attemptList2.Add(new UserLoginAttempt { Id = Guid.NewGuid(), AttemptTime = DateTime.Now.AddDays(rand.Next(-200, 0)), IsSuccess = false, UserId = user1.Id });
             }
             user2.Attempts = attemptList2;
             userList.Add(user1);

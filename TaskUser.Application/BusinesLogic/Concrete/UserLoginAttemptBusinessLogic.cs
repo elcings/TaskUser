@@ -24,12 +24,15 @@ namespace TaskUser.Application.BusinesLogic
             _mapper = mapper;
         }
 
-
-      
-
         public StatisticReponse Get(StatisticRequest request)
         {
-            var query = _userLoginAttempRepository.Query(x=>x.AttemptTime>=request.Startdate&&x.AttemptTime<=request.EndDate).Select(x=>new {Year=x.AttemptTime.Year,Month=x.AttemptTime.Month,Day=x.AttemptTime.Day,IsSucced=x.IsSuccess,UserId=x.UserId }).ToList();
+            var isNuLLStartDate = !request.Startdate.HasValue;
+            var isNuLLEndDate = !request.EndDate.HasValue;
+            var query = _userLoginAttempRepository.Query(x=>
+            
+            (isNuLLStartDate || x.AttemptTime>=request.Startdate)
+            &&(isNuLLEndDate || x.AttemptTime<=request.EndDate),q=>q.OrderBy(s=>s.AttemptTime))
+                .Select(x=>new {Year=x.AttemptTime.Year,Month=x.AttemptTime.Month,Day=x.AttemptTime.Day,IsSucced=x.IsSuccess,UserId=x.UserId }).ToList();
             var result = new StatisticReponse();
             query.GroupBy(x => new
             {

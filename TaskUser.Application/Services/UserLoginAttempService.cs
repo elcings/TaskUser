@@ -21,9 +21,9 @@ namespace TaskUser.Application.Services
             _userBusinessLogic = userBusinessLogic;
             _actionInvoker = actionInvoker;
         }
-        public ActionResult<object> Get(StatisticRequest request)
+        public ActionResult<StatisticReponse> Get(StatisticRequest request)
         {
-            return _actionInvoker.Invoke<object>(() => {
+            return _actionInvoker.Invoke<StatisticReponse>(() => {
                 return _userBusinessLogic.Get(request);
             }, "UserLoginAttempService.Get", false);
         }

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="6.1.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TaskUser.Application\TaskUser.Application.csproj" />
+    <ProjectReference Include="..\..\TaskUser.Common\TaskUser.Common.csproj" />
+    <ProjectReference Include="..\TaskUser.Sdk\TaskUser.Sdk.csproj" />
+  </ItemGroup>
+
+</Project>
